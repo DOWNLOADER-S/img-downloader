@@ -24,6 +24,7 @@ apt install git
 ```
 
 ### Install Git clone
+Here are the packages that will be installed from the script (dependencies are not listed): `img2pdf` and `rename`.
 ```{bash}
 git clone https://framagit.org/downloader-s/img-downloader.git
 cd img-downloader
