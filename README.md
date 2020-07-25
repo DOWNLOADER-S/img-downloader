@@ -8,7 +8,7 @@ It is by starting from this principle and by failing with the other proposed met
 - allow the final PDF to be downloaded from any device (by FTP and deposit on a free server)
 - **all in one action!**
 
-> **In the end, in about 1 min for ~40 images, you get your file ready to view and store wherever you want!**
+> **In the end, in about 1 min for ~40 images (pages), you get your file ready to view and store wherever you want!**
 
 # 3 ways to do
 - **[UNIX](#unix)** : see all the details delow
