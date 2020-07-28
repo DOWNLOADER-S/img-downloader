@@ -2,10 +2,10 @@
 
 During a period of magazine advertising, publishers offered a copy of the magazine for free on an online reading site: [Calaméo](https://calameo.com). Unfortunately, if the person uploading the file to the site does not offer the download, the document cannot be read offline.
 
-It is by starting from this principle and by failing with the other proposed methods, that I decided to build a shell ("*and a batch script*" -- in active reflexion) in order to:
+It is by starting from this principle and by failing with the other proposed methods, that I decided to build a shell ("*and a batch script*" -- in active construction) in order to:
 - download all the images of the file proposed for reading
-- merge the images in a PDF file
-- allow the final PDF to be downloaded from any device (by FTP and deposit on a free server)
+- merge the images in a PDF file / compress the images in a ZIP file (*windows version*)
+- allow the final PDF/ZIP to be downloaded from any device (by FTP and deposit on a free server)
 - **all in one action!**
 
 > **In the end, in about 1 min for ~40 images (pages), you get your file ready to view and store wherever you want!**
@@ -13,7 +13,7 @@ It is by starting from this principle and by failing with the other proposed met
 # 3 ways to do
 - **[UNIX](#unix)** : see all the details delow
 - **WINDOWS** (1) : use a **virtual machine** to run the above UNIX script ([tutorial link](https://medium.com/platform-engineer/how-to-install-debian-linux-on-virtualbox-with-guest-additions-778afa0ee7e0)) -- **other simpler solutions will arrive**
-- **WINDOWS** (2) : A command line user version is now available but it is definitely not finalized and we **do not recommend its use at this time**. If you still want to use it, just run the script **as administrator** and answer the questions. *This script only downloads images from magazines and does not merge them into PDF*.
+- **WINDOWS** (2) : A command line user version is now available but it is definitely not finalized and just run the script **as administrator** and answer the questions. *This script only downloads images from magazines and can send it to a server but does not merge them into PDF*.
 
 ---
 
