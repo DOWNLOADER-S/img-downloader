@@ -2,7 +2,7 @@
 
 During a period of magazine advertising, publishers offered a copy of the magazine for free on an online reading site: [Calaméo](https://calameo.com). Unfortunately, if the person uploading the file to the site does not offer the download, the document cannot be read offline.
 
-It is by starting from this principle and by failing with the other proposed methods, that I decided to build a shell ("*and a batch script*" -- in construction) in order to:
+It is by starting from this principle and by failing with the other proposed methods, that I decided to build a shell ("*and a batch script*" -- in reflexion) in order to:
 - download all the images of the file proposed for reading
 - merge the images in a PDF file
 - allow the final PDF to be downloaded from any device (by FTP and deposit on a free server)
