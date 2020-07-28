@@ -15,7 +15,6 @@ apt install -y rename
 #ask informations
 read -p 'What do you want to call the download folder? ==> ' DOWNLOAD
 read -p 'What is the url of the document? ==> ' URL
-#read -p 'What is the url ID of the og:image? ==> ' ID
 read -p 'What is the number of pages of the document? ==> ' PAGES
 read -p 'What do you want to call the final PDF? ==> ' NAME
 read -p 'Do you want to receive the final PDF by email (in a download link)? (Y for yes and N for no) ==>' FTP
