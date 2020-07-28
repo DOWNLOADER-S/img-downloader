@@ -18,17 +18,10 @@ It is by starting from this principle and by failing with the other proposed met
 ---
 
 ## UNIX
-*Required* :
-It is necessary to install the git package in order to clone the script and the directory on your device.
-```{bash}
-apt install git
-```
-
-### Install Git clone
+### Download the script
 Here are the packages that will be installed from the script (dependencies are not listed): `img2pdf` and `rename`.
 ```{bash}
-git clone https://framagit.org/downloader-s/img-downloader.git
-cd img-downloader
+curl -o "down_img.sh" https://framagit.org/downloader-s/img-downloader/-/raw/master/down_img.sh
 chmod u+x down_img.sh
 ```
 ### Run the code
@@ -36,13 +29,8 @@ chmod u+x down_img.sh
 ```{bash}
 ./down_img.sh
 ```
-### Update Git clone
-It may be necessary in the future to update this script. For this it is extremely important to place yourself in the git folder "img-downloader" (say in the code) and to execute the code below:
-```{bash}
-cd img-downloader
-git reset --hard HEAD && git checkout master && git pull
-chmod u+x down_img.sh 
-```
+### Update the script
+It may be necessary in the future to update this script : **it is important to do this regularly in order to keep a stable version and take advantage of all the features.** To do this, simply re-download the script from step **[Download the script](#download-the-script)**.
 
 ---
 
