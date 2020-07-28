@@ -30,7 +30,7 @@ set fiNAME=%NAME%.zip
 tar -acf ../%fiNAME% *.jpg
 
 if %FTP% == Y (
-curl -q -T %FOLDER%\IMG-DOWNLOADER\%fiNAME% -u %EMAIL%:'test' ftp://dl.free.fr
+curl -q -T "%FOLDER%\IMG-DOWNLOADER\%fiNAME%" -u %EMAIL%:'test' ftp://dl.free.fr
  )
 
 echo ================================================================
