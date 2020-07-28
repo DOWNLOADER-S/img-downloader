@@ -10,7 +10,7 @@ cd IMG-DOWNLOADER
 mkdir DOWNLOAD
 cd DOWNLOAD
 
-REM download all images
+REM download all images by obtain the ID of the storage folder with the cut of the url
 for /f "tokens=1,2,3,4 delims=/" %%a in ("%URL%") do (
   set ID=%%c
   )
