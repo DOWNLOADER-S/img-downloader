@@ -1,8 +1,7 @@
 @echo off
 
-set /p FOLDER="What is the storage folder address (e.g. C:/Users/username/desktop/) "
-REM set /p URL="What is the url of the document? ==> "
-set /p URL="What is the url of the og:image? ==> "
+set /p FOLDER="What is the storage folder address (e.g. C:/Users/username/desktop) "
+set /p URL="What is the url of the document? ==> "
 set /p PAGES="What is the number of pages of the document? ==> "
 set /p NAME="What do you want to call the final zip file? ==> "
 set /p FTP="Do you want to receive the final file by email (in a download link)? (Y for yes and N for no) ==> "
@@ -17,10 +16,14 @@ cd IMG-DOWNLOADER
 mkdir DOWNLOAD
 cd DOWNLOAD
 
-REM Obtain the ID of the storage folder with the cut of the url
-for /f "tokens=1,2,3,4 delims=/" %%a in ("%URL%") do (
-  set ID=%%c
-  )
+REM Obtain the ID of the images by use a python script
+curl -o "TMP-URL-IMG-DOWNLOADER.txt" %URL%
+curl -o "IMG-DOWNLOADER.py" https://framagit.org/downloader-s/img-downloader/-/raw/master/IMG-DOWNLOADER.py
+python IMG-DOWNLOADER.py TMP-URL-IMG-DOWNLOADER.txt > TMP-ID-IMG-DOWNLOADER.txt
+set /p ID=<TMP-ID-IMG-DOWNLOADER.txt
+del TMP-URL-IMG-DOWNLOADER.txt
+del TMP-ID-IMG-DOWNLOADER.txt
+del IMG-DOWNLOADER.py
 
 REM Download the images
 curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[1-%PAGES%].jpg
