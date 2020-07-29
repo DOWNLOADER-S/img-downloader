@@ -13,7 +13,7 @@ It is by starting from this principle and by failing with the other proposed met
 # 3 ways to do (*by order of preference*)
 - **[UNIX](#unix)** : see all the details delow
 - **WINDOWS** (1) : use a **virtual machine** to run the above UNIX script ([TUTORIAL link](https://medium.com/platform-engineer/how-to-install-debian-linux-on-virtualbox-with-guest-additions-778afa0ee7e0)) -- **other simpler solutions will arrive**
-- **WINDOWS** (2) : A command line user version is now available but it is definitely not finalized and just run the script **as administrator** and answer the questions. *This script only downloads images from magazines and can send it to a server but does not merge them into PDF*.
+- **WINDOWS** (2) : A command line user version is now available. Run the script **as administrator** and answer the questions. *This script only downloads images from magazines and can send it to a server but does not merge them into PDF*.
 
 ---
 
