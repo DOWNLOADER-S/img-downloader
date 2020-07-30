@@ -2,18 +2,18 @@
 
 During a period of magazine advertising, publishers offered a copy of the magazine for free on an online reading site: [Calaméo](https://calameo.com). Unfortunately, if the person uploading the file to the site does not offer the download, the document cannot be read offline.
 
-It is by starting from this principle and by failing with the other proposed methods, that I decided to build a shell ("*and a batch script*" -- in active construction) in order to:
+It is by starting from this principle and by failing with the other proposed methods, that I decided to build a shell and a batch script in order to:
 - download all the images of the file proposed for reading
-- merge the images in a PDF file / compress the images in a ZIP file (*windows version*)
-- allow the final PDF/ZIP to be downloaded from any device (by FTP and deposit on a free server)
+- merge the images in a PDF file
+- allow the final PDF to be downloaded from any device (by FTP and deposit on a free server)
 - **all in one action!**
 
 > **In the end, in about 1 min for ~40 images (pages), you get your file ready to view and store wherever you want!**
 
 # 3 ways to do (*by order of preference*)
 - **[UNIX](#unix)** : see all the details delow
-- **WINDOWS** (1) : use a **virtual machine** to run the above UNIX script ([TUTORIAL link](https://medium.com/platform-engineer/how-to-install-debian-linux-on-virtualbox-with-guest-additions-778afa0ee7e0)) -- **other simpler solutions will arrive**
-- **WINDOWS** (2) : A command line user version is now available. Run the script **as administrator** and answer the questions. *This script only downloads images from magazines and can send it to a server but does not merge them into PDF*.
+- **WINDOWS** (1) : use the script '*down_img_win.bat*', **run as administrator** and answer the questions
+- **WINDOWS** (2) : use a **virtual machine** to run the above UNIX script ([TUTORIAL link](https://medium.com/platform-engineer/how-to-install-debian-linux-on-virtualbox-with-guest-additions-778afa0ee7e0))
 
 ---
 
@@ -39,5 +39,4 @@ It may be necessary in the future to update this script : **it is important to d
 - [img2pdf](https://gitlab.mister-muffin.de/josch/img2pdf) / Package
 - [curl](https://github.com/curl/curl) / Package
 - rename / Package
-- [Script to the server](https://forum.ubuntu-fr.org/viewtopic.php?id=120246) / Source
 - [Link to the free server](http://dl.free.fr) / Server
