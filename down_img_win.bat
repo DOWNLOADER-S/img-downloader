@@ -1,5 +1,5 @@
 @echo off
-
+setlocal EnableDelayedExpansion
 set /p FOLDER="What is the storage folder address (e.g. C:/Users/username/desktop) "
 set /p URL="What is the url of the document? ==> "
 set /p PAGES="What is the number of pages of the document? ==> "
@@ -25,15 +25,22 @@ del TMP-URL-IMG-DOWNLOADER.txt
 del TMP-ID-IMG-DOWNLOADER.txt
 del IMG-DOWNLOADER.py
 
-REM Download the images
+REM Download the images and correct name them
+if %PAGES% lss 10 (
 curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[1-%PAGES%].jpg
+) else (
+curl -o "0#1.jpg" https://p.calameoassets.com/%ID%/p[1-9].jpg
+curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[10-%PAGES%].jpg
+)
 
 REM Merge all images in a PDF
 set fiNAME=%NAME%.pdf
 
+REM use pip, img2pdf and pillow
 python -m pip install --upgrade pip
 python -m pip install --upgrade img2pdf
-img2pdf *.jpg -o ../%fiNAME% REM DON'T WORK (the search of all files with .jpg)
+set "LSJPG=" & for %%I in ("*.jpg") do set "LSJPG=!LSJPG! "%%I""
+img2pdf !LSJPG! -o "../%fiNAME%"
 
 if %FTP% == Y (
 curl -q -T "%FOLDER%\IMG-DOWNLOADER\%fiNAME%" -u %EMAIL%:'test' ftp://dl.free.fr
