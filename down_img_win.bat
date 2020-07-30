@@ -1,10 +1,10 @@
 @echo off
-
+setlocal EnableDelayedExpansion
 set /p FOLDER="What is the storage folder address (e.g. C:/Users/username/desktop) "
 set /p URL="What is the url of the document? ==> "
 set /p PAGES="What is the number of pages of the document? ==> "
-set /p NAME="What do you want to call the final zip file? ==> "
-set /p FTP="Do you want to receive the final file by email (in a download link)? (Y for yes and N for no) ==> "
+set /p NAME="What do you want to call the final PDF? ==> "
+set /p FTP="Do you want to receive the final PDF by email (in a download link)? (Y for yes and N for no) ==> "
 
 if %FTP% == Y (
 set /p EMAIL="What is your email address? ==> "
@@ -25,12 +25,22 @@ del TMP-URL-IMG-DOWNLOADER.txt
 del TMP-ID-IMG-DOWNLOADER.txt
 del IMG-DOWNLOADER.py
 
-REM Download the images
+REM Download the images and correct name them
+if %PAGES% lss 10 (
 curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[1-%PAGES%].jpg
+) else (
+curl -o "0#1.jpg" https://p.calameoassets.com/%ID%/p[1-9].jpg
+curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[10-%PAGES%].jpg
+)
 
-REM Compress all images
-set fiNAME=%NAME%.zip
-tar -acf ../%fiNAME% *.jpg
+REM Merge all images in a PDF
+set fiNAME=%NAME%.pdf
+
+REM use pip, img2pdf and pillow
+python -m pip install --upgrade pip
+python -m pip install --upgrade img2pdf
+set "LSJPG=" & for %%I in ("*.jpg") do set "LSJPG=!LSJPG! "%%I""
+img2pdf !LSJPG! -o "../%fiNAME%"
 
 if %FTP% == Y (
 curl -q -T "%FOLDER%\IMG-DOWNLOADER\%fiNAME%" -u %EMAIL%:'test' ftp://dl.free.fr
@@ -42,9 +52,8 @@ echo Thanks for use of IMG-downloader!
 echo To sump up :
 echo All images have been downloaded and are located here: %FOLDER%\IMG-DOWNLOADER\DOWNLOAD\
 if %FTP% == Y (
-echo The final zip file %fiNAME% has been uploaded to the server, you will receive an email to download it to this address: %EMAIL%
+echo The final PDF file %fiNAME% has been uploaded to the server, you will receive an email to download it to this address: %EMAIL%
  )
-echo All you have to do now is print all the images with a PDF printer so that you can read the document offline.
 echo _
 echo Enjoy it!
 echo A-d-r-i
