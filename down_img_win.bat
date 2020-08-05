@@ -1,16 +1,17 @@
 @echo off
 setlocal EnableDelayedExpansion
-set /p FOLDER="What is the storage folder address (e.g. C:/Users/username/desktop) "
+set /p FOLDER="What is the storage folder address (e.g. C:\Users\username\desktop) ==> "
 set /p URL="What is the url of the document? ==> "
 set /p PAGES="What is the number of pages of the document? ==> "
 set /p NAME="What do you want to call the final PDF? ==> "
+set /p KEEP="Would you like to keep the images in a folder after merging to pdf? (Y for yes and N for no) ==> "
 set /p FTP="Do you want to receive the final PDF by email (in a download link)? (Y for yes and N for no) ==> "
 
 if %FTP% == Y (
 set /p EMAIL="What is your email address? ==> "
  )
 
-cd %FOLDER%
+cd "%FOLDER%"
 mkdir IMG-DOWNLOADER
 cd IMG-DOWNLOADER
 mkdir DOWNLOAD
@@ -42,15 +43,29 @@ python -m pip install --upgrade img2pdf
 set "LSJPG=" & for %%I in ("*.jpg") do set "LSJPG=!LSJPG! "%%I""
 img2pdf !LSJPG! -o "../%fiNAME%"
 
+REM save images in library
+if %KEEP% == Y (
+cd "%FOLDER%\IMG-DOWNLOADER"
+md LIBRARY\%NAME%
+move /y DOWNLOAD\*.jpg LIBRARY\%NAME% >nul
+rd /s /q DOWNLOAD
+) else (
+rd /s DOWNLOAD
+)
+
 if %FTP% == Y (
 curl -q -T "%FOLDER%\IMG-DOWNLOADER\%fiNAME%" -u %EMAIL%:'test' ftp://dl.free.fr
  )
+
 
 echo ================================================================
 echo The script is finished! If you have not had an error, everything has worked fine!
 echo Thanks for use of IMG-downloader!
 echo To sump up :
-echo All images have been downloaded and are located here: %FOLDER%\IMG-DOWNLOADER\DOWNLOAD\
+echo The final PDF file is called %fiNAME% and is located here %FOLDER%\IMG-DOWNLOADER\
+if %KEEP% == Y (
+echo All downloaded images are saved in this folder: %FOLDER%\IMG-DOWNLOADER\LIBRARY\%NAME%
+ )
 if %FTP% == Y (
 echo The final PDF file %fiNAME% has been uploaded to the server, you will receive an email to download it to this address: %EMAIL%
  )
@@ -58,7 +73,14 @@ echo _
 echo Enjoy it!
 echo A-d-r-i
 echo _
-echo Press a key to close the script and open the folder.
+echo Answer the question to finish the script and open the folder.
 echo ================================================================
-pause
+set /p OTHER="Would you like to download another magazine? (Y for yes and N for no) ==>"
+if %OTHER% == Y (
+start "IMG-DOWNLOADER" "%~f0"
 %SystemRoot%\explorer.exe "%FOLDER%\IMG-DOWNLOADER\"
+exit
+) else (
+%SystemRoot%\explorer.exe "%FOLDER%\IMG-DOWNLOADER\"
+exit
+)
