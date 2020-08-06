@@ -1,11 +1,22 @@
 @echo off
 setlocal EnableDelayedExpansion
+echo ___________________________________________________________________________________
+echo #
+echo                This script need to run with administrator privileges            
+echo #___________________________________________________________________________________
+echo #
 set /p FOLDER="What is the storage folder address (e.g. C:\Users\username\desktop) ==> "
+echo #
 set /p URL="What is the url of the document? ==> "
+echo #
 set /p PAGES="What is the number of pages of the document? ==> "
+echo #
 set /p NAME="What do you want to call the final PDF? ==> "
+echo #
 set /p KEEP="Would you like to keep the images in a folder after merging to pdf? (Y for yes and N for no) ==> "
+echo #
 set /p FTP="Do you want to receive the final PDF by email (in a download link)? (Y for yes and N for no) ==> "
+echo #
 
 if %FTP% == Y (
 set /p EMAIL="What is your email address? ==> "
@@ -58,7 +69,7 @@ curl -q -T "%FOLDER%\IMG-DOWNLOADER\%fiNAME%" -u %EMAIL%:'test' ftp://dl.free.fr
  )
 
 
-echo ================================================================
+echo ___________________________________________________________________________________
 echo The script is finished! If you have not had an error, everything has worked fine!
 echo Thanks for use of IMG-downloader!
 echo To sump up :
@@ -74,7 +85,7 @@ echo Enjoy it!
 echo A-d-r-i
 echo _
 echo Answer the question to finish the script and open the folder.
-echo ================================================================
+echo ___________________________________________________________________________________
 set /p OTHER="Would you like to download another magazine? (Y for yes and N for no) ==>"
 if %OTHER% == Y (
 start "IMG-DOWNLOADER" "%~f0"
