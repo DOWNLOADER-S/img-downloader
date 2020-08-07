@@ -1,6 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
-echo ___________________________________________________________________________________
+echo #___________________________________________________________________________________
 echo #
 echo                This script need to run with administrator privileges            
 echo #___________________________________________________________________________________
@@ -69,9 +69,10 @@ curl -q -T "%FOLDER%\IMG-DOWNLOADER\%fiNAME%" -u %EMAIL%:'test' ftp://dl.free.fr
  )
 
 
-echo ___________________________________________________________________________________
+echo #___________________________________________________________________________________
 echo The script is finished! If you have not had an error, everything has worked fine!
 echo Thanks for use of IMG-downloader!
+echo #
 echo To sump up :
 echo The final PDF file is called %fiNAME% and is located here %FOLDER%\IMG-DOWNLOADER\
 if %KEEP% == Y (
@@ -80,12 +81,12 @@ echo All downloaded images are saved in this folder: %FOLDER%\IMG-DOWNLOADER\LIB
 if %FTP% == Y (
 echo The final PDF file %fiNAME% has been uploaded to the server, you will receive an email to download it to this address: %EMAIL%
  )
-echo _
+echo #
 echo Enjoy it!
 echo A-d-r-i
-echo _
+echo #
 echo Answer the question to finish the script and open the folder.
-echo ___________________________________________________________________________________
+echo #___________________________________________________________________________________
 set /p OTHER="Would you like to download another magazine? (Y for yes and N for no) ==>"
 if %OTHER% == Y (
 start "IMG-DOWNLOADER" "%~f0"
