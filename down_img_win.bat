@@ -49,6 +49,7 @@ REM Merge all images in a PDF
 set fiNAME=%NAME%.pdf
 
 REM use pip, img2pdf and pillow
+python -m ensurepip
 python -m pip install --upgrade pip
 python -m pip install --upgrade img2pdf
 set "LSJPG=" & for %%I in ("*.jpg") do set "LSJPG=!LSJPG! "%%I""
@@ -58,10 +59,11 @@ REM save images in library
 if %KEEP% == Y (
 cd "%FOLDER%\IMG-DOWNLOADER"
 md LIBRARY\%NAME%
-move /y DOWNLOAD\*.jpg LIBRARY\%NAME% >nul
-rd /s /q DOWNLOAD
+move /y DOWNLOAD\*.jpg LIBRARY\%NAME% > NUL
+rmdir /s /q DOWNLOAD > NUL
 ) else (
-rd /s DOWNLOAD
+cd "%FOLDER%\IMG-DOWNLOADER"
+rmdir /s /q DOWNLOAD > NUL
 )
 
 if %FTP% == Y (
