@@ -41,8 +41,8 @@ REM Download the images and correct name them
 if %PAGES% lss 10 (
 curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[1-%PAGES%].jpg
 ) else (
-curl -o "0#1.jpg" https://p.calameoassets.com/%ID%/p[1-9].jpg
-curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[10-%PAGES%].jpg
+curl -o "00#1.jpg" https://p.calameoassets.com/%ID%/p[1-9].jpg
+curl -o "0#1.jpg" https://p.calameoassets.com/%ID%/p[10-%PAGES%].jpg
 )
 
 REM Merge all images in a PDF
