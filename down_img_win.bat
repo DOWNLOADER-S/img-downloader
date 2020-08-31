@@ -1,4 +1,30 @@
 @echo off
+
+:: BatchGotAdmin
+:-------------------------------------
+REM  --> Check for permissions
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+REM --> If error flag set, we do not have admin.
+if '%errorlevel%' NEQ '0' (
+    echo Requesting administrative privileges...
+    goto UACPrompt
+) else ( goto gotAdmin )
+
+:UACPrompt
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    set params = %*:"=""
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
+
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+    exit /B
+
+:gotAdmin
+    pushd "%CD%"
+    CD /D "%~dp0"
+:--------------------------------------
+@echo off
 setlocal EnableDelayedExpansion
 echo #___________________________________________________________________________________
 echo #
@@ -41,8 +67,14 @@ REM Download the images and correct name them
 if %PAGES% lss 10 (
 curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[1-%PAGES%].jpg
 ) else (
+	if %PAGES% geq 100 (
 curl -o "00#1.jpg" https://p.calameoassets.com/%ID%/p[1-9].jpg
-curl -o "0#1.jpg" https://p.calameoassets.com/%ID%/p[10-%PAGES%].jpg
+curl -o "0#1.jpg" https://p.calameoassets.com/%ID%/p[10-99].jpg
+curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[100-%PAGES%].jpg
+	) else (
+curl -o "0#1.jpg" https://p.calameoassets.com/%ID%/p[1-9].jpg
+curl -o "#1.jpg" https://p.calameoassets.com/%ID%/p[10-%PAGES%].jpg
+	)
 )
 
 REM Merge all images in a PDF
@@ -89,7 +121,7 @@ echo A-d-r-i
 echo #
 echo Answer the question to finish the script and open the folder.
 echo #___________________________________________________________________________________
-set /p OTHER="Would you like to download another magazine? (Y for yes and N for no) ==>"
+set /p OTHER="Would you like to download another magazine? (Y for yes and N for no) ==> "
 if %OTHER% == Y (
 start "IMG-DOWNLOADER" "%~f0"
 %SystemRoot%\explorer.exe "%FOLDER%\IMG-DOWNLOADER\"
