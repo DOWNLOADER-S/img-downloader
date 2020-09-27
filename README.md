@@ -19,6 +19,7 @@ It is by starting from this principle and by failing with the other proposed met
 ---
 
 ## UNIX
+<span style="color:blue">**Warning ! Currently, the counting of files over 100 pages is poorly performed. It is being resolved.**</span>
 ### Download the script
 Here are the packages that will be installed from the script (dependencies are not listed): `img2pdf` and `rename`.
 ```{bash}
